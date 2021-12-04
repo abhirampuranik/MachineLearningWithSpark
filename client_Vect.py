@@ -41,7 +41,7 @@ def send_spam_ham(x):
 
 udf1 = udf(lambda x: process_text(x), ArrayType(StringType()))
 clf = MultinomialNB()
-def plswork(rdd):
+def streamread(rdd):
 	
 	global clf
 	
@@ -62,11 +62,13 @@ def plswork(rdd):
 
 
 		n_df = df.select(udf1('Message').alias('udf1(Message)'), send_subject('Subject'), send_spam_ham('Spam/Ham'))
-		df1 = n_df.withColumnRenamed("Spam/Ham","SpamHam").withColumnRenamed("udf1(Message)","Message")
-		dfl = df1.withColumn("SpamHam", when(df1.SpamHam == "spam","1").when(df1.SpamHam == "ham","0").otherwise(df1.SpamHam))
+		df1 = n_df.withColumnRenamed("Spam/Ham","Spamham")
+		df2 = df1.withColumnRenamed("udf1(Message)","Message")
+		dfl = df2.withColumn("Spamham", when(df1.Spamham == "spam","1").when(df1.Spamham == "ham","0").otherwise(df1.Spamham))
 
 		a = dfl.select('Message').collect()
-		b = dfl.select('SpamHam').collect()
+		b = dfl.select('Spamham').collect()
+		
 		messages = []
 		target = []
 		for row in a:
@@ -91,7 +93,7 @@ def plswork(rdd):
 			pickle.dump(clf,picklefile)
 
 
-data.foreachRDD(lambda rdd: plswork(rdd))
+data.foreachRDD(lambda rdd: streamread(rdd))
 
 
 
