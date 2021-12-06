@@ -1,0 +1,23 @@
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/pes1ug19cs018/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00      1429
+           1       1.00      1.00      1.00      1571
+
+    accuracy                           1.00      3000
+   macro avg       1.00      1.00      1.00      3000
+weighted avg       1.00      1.00      1.00      3000
+
+Traceback (most recent call last):
+  File "/home/pes1ug19cs018/pickles/sgd/testing_sgd2000.py", line 97, in <module>
+    ssc.awaitTermination()
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/streaming/context.py", line 199, in awaitTermination
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1303, in __call__
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1033, in send_command
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1200, in send_command
+  File "/usr/lib/python3.8/socket.py", line 669, in readinto
+    return self._sock.recv_into(b)
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/context.py", line 285, in signal_handler
+KeyboardInterrupt
