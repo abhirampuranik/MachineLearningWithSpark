@@ -33,7 +33,7 @@ data = ssc.socketTextStream("localhost",6100)
 
 #nltk.download('stopwords')
 
-def streamread(text):
+def process_text(text):
 	from nltk.corpus import stopwords
 	nopunc = [char for char in text if char not in string.punctuation]
 	nopunc = ''.join(nopunc)
