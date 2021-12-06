@@ -1,3 +1,4 @@
+import sys
 import time
 from pyspark import SparkContext
 from pyspark.sql.functions import udf
@@ -18,7 +19,9 @@ from pyspark.sql.types import ArrayType, StringType, StructField, StructType
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.metrics import classification_report
 
-with open('spam_classifier_SGD','rb') as modelFile:
+picklefilename = sys.argv[1]
+
+with open(picklefilename,'rb') as modelFile:
     model = pickle.load(modelFile)
 
 sc = SparkContext("local[2]", "spam")
