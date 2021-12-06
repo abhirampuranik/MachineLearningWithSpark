@@ -1,3 +1,4 @@
+import sys
 import string
 import pickle
 import json
@@ -14,8 +15,9 @@ from pyspark.sql.types import ArrayType, StringType, StructField, StructType
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.metrics import classification_report
 
+picklefilename = sys.argv[1]
 
-with open('spam_classifier_MNB','rb') as modelFile:
+with open(picklefilename,'rb') as modelFile:
     model = pickle.load(modelFile)
 #Predict with the test set
 # prediction = model.predict(X_test)
